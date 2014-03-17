@@ -10,11 +10,11 @@ smile2inchi =function(smile,verbose=F){
 
 
 
-inchi2sdf =function(smile,verbose=F){
+inchi2sdf =function(inchi,verbose=F){
   #require(ChemmineR)
   # calls obabel binary in system. openbabel need to be installed
   
-  string=paste(as.character(smile),collapse='" -:"')
+  string=paste(as.character(inchi),collapse='" -:"')
   output=system(      paste('obabel -iinchi -:"',string,'" -osdf --gen2D',sep='')      ,intern=T,ignore.stderr = !verbose)
   
   output=read.SDFset(output)
