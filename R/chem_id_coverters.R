@@ -1,4 +1,6 @@
-# smile2inchi ##################################
+# Converters ###########################
+#--------------------------------------#
+
 smile2inchi =function(smile,verbose=F){  
   # calls obabel binary in system. openbabel need to be installed
   
@@ -12,7 +14,7 @@ smile2inchi =function(smile,verbose=F){
 
 
 
-# inchi2sdf ##################################
+
 inchi2sdf =function(inchi,verbose=F){
   #require(ChemmineR)
   # calls obabel binary in system. openbabel need to be installed
@@ -30,7 +32,61 @@ inchi2sdf =function(inchi,verbose=F){
 
 
 
-# inchi.keep.cont ##################################
+name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nrow=length(input_names)))     ){
+  
+  
+  nas_logi = is.na(input_pubchem)
+  nas_idx = which(nas_logi)
+  output=matrix(nrow=0,ncol=5)
+  colnames(output)=c('org_row','input_name','output_name','pubchem_CID','inchi')
+  
+  if (length(nas_idx)==0){
+    warning('No compound names left that doesn\'t already have pubchem ids',immediate. =T)
+  }
+  
+  
+  
+  for (i in nas_idx){
+      
+    org_row            = i
+    input_name         = as.character(input_names[i])
+    pubchem_CID        = as.character(        CTSgetR(input_name,from='Chemical Name',to='PubChem CID',limit.values=F)[,'PubChem.CID']          )
+    pubchem_CID        = as.numeric(unlist(str_split(pubchem_CID,',')))
+    output_name        = as.character(        CTSgetR(pubchem_CID,to='Chemical Name',from='PubChem CID',limit.values=F)[,'Chemical.Name']      )
+    inchi              = smile2inchi(         get.cid(pubchem_CID)[,'CanonicalSmiles']      )
+    
+    if (length(inchi)==0){inchi=''}
+    
+    output = rbind(output,           cbind(org_row,input_name,output_name,pubchem_CID,inchi)            )
+    
+    
+  }
+  
+  return(output)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#--------------------------------------#
+
+
+
+
+
+
+# Modify molecules ###########################
+#--------------------------------------#
+
 inchi.keep.cont=function(inchi,verbose=F){
   # calls obabel binary in system. openbabel need to be installed
   
@@ -39,12 +95,14 @@ inchi.keep.cont=function(inchi,verbose=F){
   
   return(output) 
 }
+#--------------------------------------#
 
 
 
 
 
-# load.camera.rules ##################################
+# Load data ###########################
+#--------------------------------------#
 load.camera.rules=function(mode){
     
   if (tolower(mode)=='pos') {ionmode=1}
@@ -55,5 +113,5 @@ load.camera.rules=function(mode){
   rules <- read.xlsx(system.file("extdata",paste('CAMERA_rules_',c('pos','neg','EI')[ionmode],'.xlsx',sep=""), package="chemhelper"),1)  
   
 }
-
+#--------------------------------------#
 
