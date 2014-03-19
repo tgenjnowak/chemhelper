@@ -71,6 +71,38 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
 
 
 
+pubchem2inchi =function(cid,skip){  
+    
+  output=character(length=length(cid))
+    
+  cid_org =   suppressWarnings(     as.numeric(cid)     )
+  cid = cid_org
+  
+  if (!missing('skip')) {cid[-skip]}
+  
+  cid_unique = unique(cid)
+  cid_unique=cid_unique[!is.na(cid_unique)]
+  
+    
+  for (i in cid_unique){
+  inchi =      smile2inchi(         get.cid(i)[,'CanonicalSmiles']      )
+  
+  idx = i==cid_org
+  if (!missing('skip')) {idx[skip]=F}  
+  output[idx]=inchi
+  }
+    
+  
+  
+  return(output)
+}
+
+
+
+
+
+
+
 
 
 
