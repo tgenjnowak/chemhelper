@@ -122,8 +122,17 @@ pubchem2inchi =function(cid,skip){
 inchi.keep.cont=function(inchi,verbose=F){
   # calls obabel binary in system. openbabel need to be installed
   
-  string=paste(as.character(inchi),collapse='" -:"')
-  output=system(      paste('obabel -iinchi -:"',string,'" -r -xr -oinchi',sep='')      ,intern=T,ignore.stderr = !verbose)
+  output=character(length=length(inchi))
+  loc_ok= grepl(pattern="InChI=",x=inchi)
+  inchi_good=inchi[loc_ok]
+  
+  
+  string=paste(as.character(inchi_good),collapse='" -:"')
+  inchi_cleaned=system(      paste('obabel -iinchi -:"',string,'" -r -xr -oinchi',sep='')      ,intern=T,ignore.stderr = !verbose)
+  
+  output[which(loc_ok)]=inchi_cleaned
+  output[which(!loc_ok)]=inchi[which(!loc_ok)]
+  
   
   return(output) 
 }
