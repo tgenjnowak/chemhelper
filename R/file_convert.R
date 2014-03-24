@@ -18,7 +18,7 @@ rem_satellite_peaks=function(files,outdir){
     file=files[i]
     
     # openMS needs mzML files
-    if (!(getExt=='mzML')){
+    if (!(getExt(files[i])=='mzML')){
       tempfile = tempfile(pattern = basename(sub("\\.[^.]*$", "", files[i]) ), tmpdir = outdir, fileext = ".mzXML")
       
       system(paste('msconvert --mzML "',files[i],'" -o "',outdir,'"',sep=""),intern=T)
