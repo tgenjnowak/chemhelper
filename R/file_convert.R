@@ -36,6 +36,6 @@ rem_satellite_peaks=function(files,outdir){
 
 
 
-C:\Program Files\OpenMS-1.11\bin>SpectraFilterWindowMower.exe -in "D:\temp\QC_Bo
-x6_AFTER_1.mzML" -out "D:\temp\test.mzML"  -algorithm:windowsize 0.3 -algorithm:
-  peakcount 1
+#C:\Program Files\OpenMS-1.11\bin>SpectraFilterWindowMower.exe -in "D:\temp\QC_Bo
+#x6_AFTER_1.mzML" -out "D:\temp\test.mzML"  -algorithm:windowsize 0.3 -algorithm:
+  #peakcount 1
