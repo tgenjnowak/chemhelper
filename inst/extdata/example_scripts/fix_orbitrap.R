@@ -1,7 +1,19 @@
+library(chemhelper)
+library(parallel)
 
-files=list.files('D:/FEM/Other_projects/Marynka/Positive mzXML solo FullScan/Batch 1/box 1',pattern='.mzXML',full.names=T)
+files=list.files('D:/FEM/Other_projects/Marynka',pattern='.mzXML',full.names=T,recursive=T)
+outdir = dirname(files)
+outdir = gsub('Marynka/','Marynka/fixedfiles/',outdir)
+
+rst
+
+# make files and outdir into a lsit
+input=cbind(files,outdir)
+input <- split(input, 1:NROW(input))
 
 
-rem_satellite_peaks(files[1:2],outdir='D:/FEM/Other_projects/Marynka/fixedfiles')
-
-
+#now make a cluster and convert in parallel
+cl <- makeCluster(getOption("cl.cores", 2))
+clusterExport(cl,c("input","rem_satellite_peaks")          )
+parLapply(cl,input,function(x) rem_satellite_peaks(x[1],x[2]))
+stopCluster(cl)
