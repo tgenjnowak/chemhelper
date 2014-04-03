@@ -21,5 +21,6 @@ import(
 importFrom(devtools,install_github)
 importFrom(MetShot,msn2xcms)
 importFrom(xlsx,read.xlsx2)
+importFrom(xlsx,read.xlsx)
 importFrom(xlsx,write.xlsx2)
 importFrom(ChemmineR,read.SDFset)

@@ -8,7 +8,7 @@ load.camera.rules=function(mode){
   if (tolower(mode)=='ei')  {ionmode=3}
   
   
-  rules <- read.xlsx2(system.file("extdata",paste('CAMERA_rules_',c('pos','neg','EI')[ionmode],'.xlsx',sep=""), package="chemhelper"),1)  
+  rules <- read.xlsx(system.file("extdata",paste('CAMERA_rules_',c('pos','neg','EI')[ionmode],'.xlsx',sep=""), package="chemhelper"),1,stringsAsFactors=F)  
   
   
   
