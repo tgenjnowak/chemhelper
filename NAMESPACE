@@ -1,14 +1,24 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
-
-# Export all names
-exportPattern(".")
+# Export all functions
+export(chemhelper.update,
+       inchi2sdf,
+       inchi.keep.cont,
+       load.camera.rules,
+       name2struc,
+       pubchem2inchi,
+       rem_satellite_peaks,
+       smile2inchi,
+       convert.waters
+       )
 
 # Import all packages listed as Imports or Depends
 import(
-  ChemmineR,
-  xlsx,
+  xcms,
   CTSgetR,
   rpubchem,
   stringr
 )
+importFrom(devtools,install_github)
+importFrom(MetShot,msn2xcms)
+importFrom(xlsx,read.xlsx2)
+importFrom(xlsx,write.xlsx2)
+importFrom(ChemmineR,read.SDFset)

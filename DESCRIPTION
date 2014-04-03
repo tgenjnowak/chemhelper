@@ -1,11 +1,12 @@
 Package: chemhelper
-Version: 0.02
+Version: 0.03
 Date: 2014-03-14
 Title: chemhelper
 Author: Jan Stanstrup <jan.stanstrup@fmach.it>
 Maintainer: Jan Stanstrup <jan.stanstrup@fmach.it>
-Depends: R (>= 2.14.0), ChemmineR, xlsx, CTSgetR, rpubchem, stringr
+Depends: R (>= 2.14.0), CTSgetR, rpubchem, stringr, xcms
 Suggests: 
+Imports: devtools, MetShot, xlsx, ChemmineR
 Enhances: 
 Description: Functions for chemical data. Opelbabel need to be installed on system and be in path
 License: GPL (>= 2)
