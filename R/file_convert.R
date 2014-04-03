@@ -360,7 +360,7 @@ for (i in 1:length(files)) {
   
   
   ## Convert the data
-  tempfile = tempfile(pattern = basename(gsub('.raw','',files[i])), tmpdir = '', fileext = ".mzXML")
+  tempfile = tempfile(pattern = basename(gsub('.raw','',files[i])), tmpdir = '/', fileext = ".mzXML")
   
   
   # if there is mobility data we need to make a copy and remove it. Otherwise masswolf doesn't work

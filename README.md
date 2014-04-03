@@ -2,6 +2,11 @@ chemhelper
 ==========
 
 R functions helpful in working with chemical data.
+* Converts files from Waters .raw format to mzData (convert.waters)
+* Extended list of adducts/fragments for CAMERA (load.camera.rules)
+* pubchem2inchi
+* inchi2sdf
+* smile2inchi
 
 
 ### Installation
