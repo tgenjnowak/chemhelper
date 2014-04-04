@@ -4,11 +4,11 @@ Date: 2014-03-14
 Title: chemhelper
 Author: Jan Stanstrup <jan.stanstrup@fmach.it>
 Maintainer: Jan Stanstrup <jan.stanstrup@fmach.it>
-Depends: R (>= 2.14.0), CTSgetR, rpubchem, stringr, xcms
+Depends: R (>= 2.14.0), Rcpp
 Suggests: 
-Imports: devtools, MetShot, xlsx, ChemmineR
+Imports: devtools, MetShot, xlsx, ChemmineR, CTSgetR, stringr, rpubchem, xcms, Biobase
 Enhances: 
-Description: Functions for chemical data. Opelbabel need to be installed on system and be in path
+Description: Functions for chemical data. Opelbabel need to be installed on system and be in path to convert inchi, smile, sdf etc. Masswolf and Masslynx need to be installed to convert waters .raw files
 License: GPL (>= 2)
 URL: None
 biocViews: MassSpectrometry, Metabolomics
