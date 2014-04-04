@@ -1,4 +1,4 @@
-db.comp.assign=function(mz,rt,comp_name_db,mz_db,rt_db,mzabs=0.01,ppm=15,ret_tol=0.15){
+db.comp.assign=function(mz,rt,comp_name_db,mz_db,rt_db,mzabs=0.01,ppm=15,ret_tol=30){
 
 
 
