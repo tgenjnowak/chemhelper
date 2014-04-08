@@ -287,10 +287,13 @@ log_convert_warning[[1]]=' '
 
 
 
+dir.create(outdir, showWarnings = FALSE,recursive=T)
+
 
 
 for (i in 1:length(files)) {
-
+  
+  
   ## Check if lockspray is present. TODO: Scream at waters
   input_method = scan(paste(files[i],'/_extern.inf',sep=""), character(0), sep = "\n",quiet=T)
   lockspray_present = any(grepl('Lock Spray Configuration',input_method))
