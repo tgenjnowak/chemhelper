@@ -9,7 +9,8 @@ export(chemhelper.update,
        smile2inchi,
        convert.waters,
        clipboard,
-       db.comp.assign
+       db.comp.assign,
+       analyze.xcms.group
        )
 
 
