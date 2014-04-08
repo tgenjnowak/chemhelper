@@ -23,13 +23,12 @@ analyze.xcms.group=function(xset_grouped,mz,rt,rt_tol_sample=60,mz_tol_sample=0.
   
   #plot
   plot(xset_grouped@peaks[select,"rt"]/60,xset_grouped@peaks[select,"mz"],pch=20,             ylim=c(min(xset_grouped@groups[select_g,"mzmin"]),max(xset_grouped@groups[select_g,"mzmax"])),                     ,xlim=c(min(xset_grouped@groups[select_g,"rtmin"])/60,max(xset_grouped@groups[select_g,"rtmax"])/60)    )
-  
-  points(rt/60,mz,col="red",pch=20,cex=3)
-  
+    
   for (i in 1:nrow(group_report)){
     rect(group_report[i,"rtmin"], group_report[i,"mzmin"], group_report[i,"rtmax"], group_report[i,"mzmax"],border=NA,col=alpha(i, 0.5))
   }
   
+  points(rt/60,mz,col="red",pch=20,cex=3)
   
   return(group_report)
   
