@@ -49,8 +49,8 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
   
   for (i in nas_idx){
     
-    #we cannot hammer pubchem. So every 20 queries we wait 10 sec.
-    if (     any(i==nas_idx[seq(from=20,to=length(nas_idx),by=20)])    ){  Sys.sleep(10) }
+    #we cannot hammer pubchem. So every 10 queries we wait 10 sec.
+    if (     any(i==nas_idx[seq(from=20,to=length(nas_idx),by=10)])    ){  Sys.sleep(10) }
     
     
     
@@ -90,8 +90,8 @@ pubchem2inchi <- function(cid,skip,silent=T){
   
   
   for (i in cid_unique){
-    #we cannot hammer pubchem. So every 20 queries we wait 10 sec.
-    if (     any(i==cid_unique[seq(from=20,to=length(cid_unique),by=20)])    ){  Sys.sleep(10) }
+    #we cannot hammer pubchem. So every 10 queries we wait 10 sec.
+    if (     any(i==cid_unique[seq(from=20,to=length(cid_unique),by=10)])    ){  Sys.sleep(10) }
     
     
     if (!(silent==T)){
