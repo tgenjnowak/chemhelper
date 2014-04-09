@@ -45,9 +45,15 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
   }
   
   
+  nas_idx = nas_idx[    !duplicated(input_names[nas_idx])     ]
   
   for (i in nas_idx){
-      
+    
+    #we cannot hammer pubchem. So every 20 queries we wait 10 sec.
+    if (     any(i==nas_idx[seq(from=20,to=length(nas_idx),by=20)])    ){  Sys.sleep(10) }
+    
+    
+    
     org_row            = i
     input_name         = as.character(input_names[i])
     pubchem_CID        = as.character(        CTSgetR(input_name,from='Chemical Name',to='PubChem CID',limit.values=F)[,'PubChem.CID']          )
@@ -57,10 +63,9 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
     
     if (length(inchi)==0){inchi=''}
     
-    output = rbind(output,           cbind(org_row,input_name,output_name,pubchem_CID,inchi)            )
-    
-    
+    output = rbind(output,           cbind(org_row,input_name,output_name,pubchem_CID,inchi)            ) 
   }
+  
   
   return(output)
 }
@@ -85,6 +90,9 @@ pubchem2inchi <- function(cid,skip,silent=T){
   
   
   for (i in cid_unique){
+    #we cannot hammer pubchem. So every 20 queries we wait 10 sec.
+    if (     any(i==cid_unique[seq(from=20,to=length(cid_unique),by=20)])    ){  Sys.sleep(10) }
+    
     
     if (!(silent==T)){
       cat(paste("Looking up pubchem CID ",i," (",which(i==cid_unique)," of ",length(cid_unique),")","\n",sep=""))
