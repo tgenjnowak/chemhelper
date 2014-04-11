@@ -10,7 +10,8 @@ export(chemhelper.update,
        convert.waters,
        clipboard,
        db.comp.assign,
-       analyze.xcms.group
+       analyze.xcms.group,
+       google_ss
        )
 
 
@@ -27,7 +28,7 @@ importFrom(xlsx,"read.xlsx","read.xlsx2","write.xlsx2")
 importFrom(stringr,"str_split","str_trim","str_replace")
 importFrom(xcms,"xcmsRaw","write.mzdata","getScan","profStep","plotChrom","plotTIC","profStep<-")
 importFrom(scales,alpha)
-
+importFrom(RCurl,getURL)
 
 
 
