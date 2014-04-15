@@ -60,9 +60,9 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
     smiles             = try(     get.cid(pubchem_CID)  , silent = TRUE)
     
     if (   inherits(smiles, "try-error") )   {
-      cat("Lookup failed. Re-trying...")
+      cat("\n Lookup failed. Re-trying in 30sec... \n")
       Sys.sleep(30)
-      smiles             = try(     get.cid(pubchem_CID)  , silent = TRUE)      
+      smiles        =     get.cid(pubchem_CID)  
     }
     
     
@@ -100,16 +100,25 @@ pubchem2inchi <- function(cid,skip,silent=T){
   
   
   for (i in cid_unique){
-    #we cannot hammer pubchem. So every 10 queries we wait 10 sec. And also 1 sec between all lookups.
-    if (     any(i==cid_unique[seq(from=20,to=length(cid_unique),by=10)])    ){  Sys.sleep(10) }
-    Sys.sleep(1)
     
     if (!(silent==T)){
       cat(paste("Looking up pubchem CID ",i," (",which(i==cid_unique)," of ",length(cid_unique),")","\n",sep=""))
     }
     
     
-    inchi =      smile2inchi(         get.cid(i)[,'CanonicalSmiles']      )
+    
+    smiles             = try(     get.cid(i)  , silent = TRUE)
+    
+    if (   inherits(smiles, "try-error") )   {
+      cat("\n Lookup failed. Re-trying in 30sec... \n")
+      Sys.sleep(30)
+      smiles           =   get.cid(i)      
+    }
+    
+    smiles=smiles[,'CanonicalSmiles']
+    inchi              = smile2inchi(     smiles          )
+      
+        
     
     idx = i==cid_org
     if (     !missing('skip') & !(length(skip)==0)    ) {idx[skip]=F}  
