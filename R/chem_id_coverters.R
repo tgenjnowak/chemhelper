@@ -115,6 +115,18 @@ pubchem2inchi <- function(cid,skip,silent=T){
       smiles           =   get.cid(i)      
     }
     
+    if (   inherits(smiles, "try-error") )   {
+      cat("\n Lookup failed again. Re-trying in 60sec... \n")
+      Sys.sleep(60)
+      smiles           =   get.cid(i)      
+    }
+    
+    if (   inherits(smiles, "try-error") )   {
+      cat("\n Lookup failed again. Re-trying in 90sec... \n")
+      Sys.sleep(90)
+      smiles           =   get.cid(i)      
+    }
+    
     smiles=smiles[,'CanonicalSmiles']
     inchi              = smile2inchi(     smiles          )
       
