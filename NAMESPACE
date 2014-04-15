@@ -11,7 +11,8 @@ export(chemhelper.update,
        clipboard,
        db.comp.assign,
        analyze.xcms.group,
-       google_ss
+       google_ss,
+       group_correct
        )
 
 

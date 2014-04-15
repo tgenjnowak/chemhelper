@@ -47,19 +47,29 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
   
   nas_idx = nas_idx[    !duplicated(input_names[nas_idx])     ]
   
+  
+  
   for (i in nas_idx){
-    
-    #we cannot hammer pubchem. So every 10 queries we wait 10 sec. And also 1 sec between all lookups.
-    if (     any(i==nas_idx[seq(from=20,to=length(nas_idx),by=10)])    ){  Sys.sleep(10) }
-    Sys.sleep(1)
-    
     
     org_row            = i
     input_name         = as.character(input_names[i])
     pubchem_CID        = as.character(        CTSgetR(input_name,from='Chemical Name',to='PubChem CID',limit.values=F)[,'PubChem.CID']          )
     pubchem_CID        = as.numeric(unlist(str_split(pubchem_CID,',')))
     output_name        = as.character(        CTSgetR(pubchem_CID,to='Chemical Name',from='PubChem CID',limit.values=F)[,'Chemical.Name']      )
-    inchi              = smile2inchi(         get.cid(pubchem_CID)[,'CanonicalSmiles']      )
+    
+    smiles             = try(     get.cid(pubchem_CID)  , silent = TRUE)
+    
+    if (   inherits(smiles, "try-error") )   {
+      cat("Lookup failed. Re-trying...")
+      Sys.sleep(30)
+      smiles             = try(     get.cid(pubchem_CID)  , silent = TRUE)      
+    }
+    
+    
+    smiles=smiles[,'CanonicalSmiles']
+    inchi              = smile2inchi(     smiles          )
+    
+    
     
     if (length(inchi)==0){inchi=''}
     
@@ -83,7 +93,7 @@ pubchem2inchi <- function(cid,skip,silent=T){
   cid_org =   suppressWarnings(     as.numeric(cid)     )
   cid = cid_org
   
-  if (!missing('skip')) {cid=cid[-skip]}
+  if (   !missing('skip') & !(length(skip)==0)   ) {cid=cid[-skip]}
   
   cid_unique = unique(cid)
   cid_unique=cid_unique[!is.na(cid_unique)]
@@ -102,7 +112,7 @@ pubchem2inchi <- function(cid,skip,silent=T){
     inchi =      smile2inchi(         get.cid(i)[,'CanonicalSmiles']      )
     
     idx = i==cid_org
-    if (!missing('skip')) {idx[skip]=F}  
+    if (     !missing('skip') & !(length(skip)==0)    ) {idx[skip]=F}  
     output[idx]=inchi
   }
   
