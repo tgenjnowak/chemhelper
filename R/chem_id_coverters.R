@@ -112,13 +112,13 @@ pubchem2inchi <- function(cid,skip,silent=T){
     if (   inherits(smiles, "try-error") )   {
       cat("\n Lookup failed. Re-trying in 30sec... \n")
       Sys.sleep(30)
-      smiles           =   get.cid(i)      
+      smiles             = try(     get.cid(i)  , silent = TRUE)
     }
     
     if (   inherits(smiles, "try-error") )   {
       cat("\n Lookup failed again. Re-trying in 60sec... \n")
       Sys.sleep(60)
-      smiles           =   get.cid(i)      
+      smiles             = try(     get.cid(i)  , silent = TRUE)     
     }
     
     if (   inherits(smiles, "try-error") )   {
