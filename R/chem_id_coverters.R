@@ -86,7 +86,7 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
 
 
 
-pubchem2inchi <- function(cid,skip,silent=T){  
+pubchem2inchi <- function(cid,skip=NULL,silent=T){  
   
   output=character(length=length(cid))
   
