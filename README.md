@@ -12,6 +12,8 @@ R functions helpful in working with chemical data. A number of functions help an
 
 
 ### Installation
+First install the dependency [CTSgetR](https://github.com/dgrapov/CTSgetR).
+
 ```R
 install.packages("devtools")
 library(devtools)
