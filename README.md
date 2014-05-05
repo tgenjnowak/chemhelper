@@ -14,13 +14,19 @@ R functions helpful in working with chemical data. A number of functions help an
 ### Installation
 First install the dependency [CTSgetR](https://github.com/dgrapov/CTSgetR).
 
+
+Then devtools.
 ```R
 install.packages("devtools")
 library(devtools)
+```
+
+
+Then chemhelper.
+```R
 install_github(repo = "chemhelper", username = "stanstrup")
 library(chemhelper)
 ```
-
 
 
 ### Updating
