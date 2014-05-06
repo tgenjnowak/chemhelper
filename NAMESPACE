@@ -12,7 +12,9 @@ export(chemhelper.update,
        db.comp.assign,
        analyze.xcms.group,
        google_ss,
-       group_correct
+       group_correct,
+       inchi.rem.stereo,
+       inchi.rem.charges
        )
 
 

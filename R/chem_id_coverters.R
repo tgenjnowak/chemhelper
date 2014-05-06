@@ -181,6 +181,36 @@ inchi.keep.cont=function(inchi,verbose=F){
   
   return(output) 
 }
+
+
+
+
+
+
+
+inchi.rem.stereo =function(inchi,verbose=F){  
+  # calls obabel binary in system. openbabel need to be installed
+  
+  string=paste(as.character(inchi),collapse='" -:"')
+  output=system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nostereo',sep='')      ,intern=T,ignore.stderr = !verbose)
+  
+  return(output)
+}
+
+
+
+inchi.rem.charges =function(inchi,verbose=F){  
+  # calls obabel binary in system. openbabel need to be installed
+  
+  string=paste(as.character(inchi),collapse='" -:"')
+  output=system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nochg',sep='')      ,intern=T,ignore.stderr = !verbose)
+  
+  return(output)
+}
+
+
+
+
 #--------------------------------------#
 
 
