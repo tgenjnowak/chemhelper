@@ -190,10 +190,17 @@ inchi.keep.cont=function(inchi,verbose=F){
 
 inchi.rem.stereo =function(inchi,verbose=F){  
   # calls obabel binary in system. openbabel need to be installed
+  # Cannot handle an infinite number of inchiùs in one chunk. So we split it.
   
-  string=paste(as.character(inchi),collapse='" -:"')
-  output=system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nostereo',sep='')      ,intern=T,ignore.stderr = !verbose)
+  inchi = split(inchi, ceiling(seq_along(inchi)/200))
   
+  
+  output = sapply(inchi,function(x) {
+  string=paste(as.character(x),collapse='" -:"')
+  system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nostereo',sep='')      ,intern=T,ignore.stderr = !verbose)
+  })
+  
+  output = unlist(output)
   return(output)
 }
 
@@ -201,11 +208,18 @@ inchi.rem.stereo =function(inchi,verbose=F){
 
 inchi.rem.charges =function(inchi,verbose=F){  
   # calls obabel binary in system. openbabel need to be installed
+  # Cannot handle an infinite number of inchiùs in one chunk. So we split it.
   
-  string=paste(as.character(inchi),collapse='" -:"')
-  output=system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nochg',sep='')      ,intern=T,ignore.stderr = !verbose)
+  inchi = split(inchi, ceiling(seq_along(inchi)/200))
   
+  output = sapply(inchi,function(x) {
+    string=paste(as.character(x),collapse='" -:"')
+    system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nochg',sep='')      ,intern=T,ignore.stderr = !verbose)
+  })
+  
+  output = unlist(output)
   return(output)
+  
 }
 
 
