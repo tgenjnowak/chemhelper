@@ -28,7 +28,7 @@ mass_decompose = function(mass,mode="neutral",elements=c('C','H','N','O','P','S'
   
   
   if(filter){
-    formulas=formulas[   floor(as.numeric(formulas[,"DBE"])) == as.numeric(formulas[,"DBE"]) & as.numeric(formulas[,"DBE"])>-1 & formulas[,"Valid"]=="Valid"       ,]
+    formulas=formulas[   floor(as.numeric(formulas[,"DBE"])) == as.numeric(formulas[,"DBE"]) & as.numeric(formulas[,"DBE"])>-1 & formulas[,"Valid"]=="Valid"       ,,drop=F]
   }
   
   
