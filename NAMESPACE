@@ -14,7 +14,8 @@ export(chemhelper.update,
        google_ss,
        group_correct,
        inchi.rem.stereo,
-       inchi.rem.charges
+       inchi.rem.charges,
+       mass_decompose
        )
 
 
@@ -32,6 +33,8 @@ importFrom(stringr,"str_split","str_trim","str_replace")
 importFrom(xcms,"xcmsRaw","write.mzdata","getScan","profStep","plotChrom","plotTIC","profStep<-")
 importFrom(scales,alpha)
 importFrom(RCurl,getURL)
+importFrom(Rdisop,"initializeElements","decomposeMass","getFormula","getValid","getMass","getScore")
+
 
 
 
