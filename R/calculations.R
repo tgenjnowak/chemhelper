@@ -1,4 +1,4 @@
-mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter=TRUE,simplify=TRUE) 
+mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE) 
 {
   
   elements=initializeElements(elements)
@@ -39,7 +39,7 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     # Do the decomposing
-    formulas=decomposeMass(mass_offsetted,ppm=30,elements=elements)
+    formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements)
     
     # Make nice table of results
     formulas=cbind(getFormula(formulas),getValid(formulas),formulas$DBE,signif(getMass(formulas)+offset,digits=7), signif((getMass(formulas)-(mass_offsetted))/(mass_offsetted)*1e6,digits=3), signif(getScore(formulas),digits=3))
@@ -47,10 +47,13 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     colnames(formulas)=c("Formula","Nitrogen rule","DBE","Calc. m/z","ppm","Rdisop score")
     
     
-    if(filter){
-      formulas=formulas[   floor(as.numeric(formulas[,"DBE"])) == as.numeric(formulas[,"DBE"]) & as.numeric(formulas[,"DBE"])>-1 & formulas[,"Nitrogen rule"]=="Valid"       ,,drop=F]
+    if(filter.DBE){
+      formulas=formulas[   floor(as.numeric(formulas[,"DBE"])) == as.numeric(formulas[,"DBE"]) & as.numeric(formulas[,"DBE"])>-1        ,,drop=F]
     }
-    
+
+    if(filter.nitrogen){
+      formulas=formulas[  formulas[,"Nitrogen rule"]=="Valid"       ,,drop=F]
+    }
     
     
     formulas_list[[i]]=formulas
