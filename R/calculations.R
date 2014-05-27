@@ -2,7 +2,7 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
 {
   
   elements=initializeElements(elements)
-  formulas_list=list()
+  formulas_list=vector("list", length(ion))
   
   for(i in 1:length(ion)){
     
@@ -39,7 +39,12 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     # Do the decomposing
-    formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements)
+    formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements,mzabs = 0)
+    
+    
+    # is nothing found then continue
+    if (is.null(formulas)){next}
+    
     
     # Make nice table of results
     formulas=cbind(getFormula(formulas),getValid(formulas),formulas$DBE,signif(getMass(formulas)+offset,digits=7), signif((getMass(formulas)-(mass_offsetted))/(mass_offsetted)*1e6,digits=3), signif(getScore(formulas),digits=3))
