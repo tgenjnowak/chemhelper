@@ -1,3 +1,23 @@
+
+
+
+formula2adduct = function(formula,add,sub){
+  
+  elements=c(  initializePSE(),initializeCharges()   )
+  formulas=vector("character",length(formula))
+  
+  for (i in 1:length(formula)){
+  formulas[i] = addMolecules(formula[i],add,elements=elements)$formula
+  formulas[i] = subMolecules(formulas[i],sub,elements=elements)$formula
+  }
+  
+  return(formulas)
+
+}
+
+
+
+
 mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 
 {
   
@@ -27,6 +47,47 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     
+    add <- 
+      switch(tolower(ion[i]),
+             "neutral" = "H0",
+             "pos" = "H+",
+             "neg" = "-",
+             "[m+h]+" = "H+",
+             "[m-h]-" = "-",
+             
+             "[m+na]+" = "Na+",
+             "[m+k]+" = "K+",
+             
+             "[m-2h+na]-" = "Na-",
+             "[m-2h+k]-" = "K-",
+             "[m+cl]-" = "Cl-",
+             "[m-h+hcoona]-" = "HCOONa-",
+             "[m-h+hcooh]-" = "HCOOH-"
+      )
+    
+    
+    
+    sub <- 
+      switch(tolower(ion[i]),
+             "neutral" = "H0",
+             "pos" = "H0",
+             "neg" = "H",
+             "[m+h]+" = "H0",
+             "[m-h]-" = "H",
+             
+             "[m+na]+" = "H0",
+             "[m+k]+" = "H0",
+             
+             "[m-2h+na]-" = "H2",
+             "[m-2h+k]-" = "H2",
+             "[m+cl]-" = "H0",
+             "[m-h+hcoona]-" = "H",
+             "[m-h+hcooh]-" = "H"
+      )
+    
+    
+    
+    
     
     
     if(is.null(offset)){stop("The selected ion is not supported")}
@@ -37,7 +98,7 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     # Shortcut to allow more masses
     if(tolower(elements)[1]=="expand"){
-      elements=c('C','H','N','O','P','S','Na','K','Cl','Br','Fe','Al','Cu','Zn','As')
+      elements=initializeElements(c('C','H','N','O','P','S','Na','K','Cl','Br','Fe','Al','Cu','Zn','As'))
     }
     
     
@@ -63,6 +124,10 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
       formulas=formulas[  formulas[,"Nitrogen rule"]=="Valid"       ,,drop=F]
     }
     
+    
+    # Add adduct formulas
+    formulas = cbind(formulas            ,    formula2adduct(formulas[,"Formula"],add,sub)     )
+    colnames(formulas)=c("Formula","Nitrogen rule","DBE","Calc. m/z","ppm","Rdisop score","Adduct formula")
     
     formulas_list[[i]]=formulas
   }
