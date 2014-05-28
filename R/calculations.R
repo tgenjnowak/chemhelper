@@ -26,6 +26,9 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
       )
     
     
+    
+    
+    
     if(is.null(offset)){stop("The selected ion is not supported")}
     
     # Get the neutral mass
