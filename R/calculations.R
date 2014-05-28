@@ -1,4 +1,4 @@
-mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE) 
+mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 
 {
   
   elements=initializeElements(elements)
@@ -39,7 +39,7 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     # Do the decomposing
-    formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements,mzabs = 0)
+    formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements,mzabs = 0, minElements=minElements, maxElements=maxElements)
     
     
     # is nothing found then continue
