@@ -126,9 +126,10 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     # Add adduct formulas
-    formulas = cbind(formulas            ,    formula2adduct(formulas[,"Formula"],add,sub)     )
-    colnames(formulas)=c("Formula","Nitrogen rule","DBE","Calc. m/z","ppm","Rdisop score","Adduct formula")
-    
+    if(nrow(formulas)>0){
+      formulas = cbind(formulas            ,    formula2adduct(formulas[,"Formula"],add,sub)     )
+      colnames(formulas)=c("Formula","Nitrogen rule","DBE","Calc. m/z","ppm","Rdisop score","Adduct formula")
+    }
     formulas_list[[i]]=formulas
   }
   
