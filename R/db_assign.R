@@ -15,7 +15,7 @@ for (i in 1:length(comp_name_db)) {
   # Finding where the compounds are
   hit = (mz > (mz_db[i] - mzabs)) & 
     (mz < (mz_db[i] + mzabs)) & 
-    (abs((mz-mz_db[i])/mz_db[i]) < mzabs) &
+    (abs((mz-mz_db[i])/mz_db[i])*1e6 < ppm) &
     (rt > (rt_db[i] - ret_tol)) & 
     (rt < (rt_db[i] + ret_tol))
   
