@@ -19,5 +19,5 @@ for (i in 1:length(infiles)){
 # Do parallel conversion
 cl <- makeCluster(detectCores())
 clusterExport(cl, "merge_scan_events")
-parLapplyLB(cl,arg_list,function(x) merge_scan_events(x[1],x[2]))
+parLapplyLB(cl,arg_list,function(x) merge_scan_events(x[1],x[2],oddrange = c(0,500),evenrange = c(500,2000)))  # remember to change to your mzranges
 stopCluster(cl)
