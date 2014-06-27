@@ -2,8 +2,9 @@ require(chemhelper)
 require(parallel)
 require(stringr)
 
-infiles = list.files(path="***********FULL INPUT PATH*************",pattern=".mzXML",recursive = T,full.names = T)
+infiles = list.files(path="***********FULL INPUT PATH*************",pattern=".mzML",recursive = T,full.names = T)
 outfiles = str_replace(infiles,"org_data","scans_merged")
+outfiles = str_replace(infiles,".mzML",".mzData")
 
 
 
