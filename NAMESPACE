@@ -15,7 +15,8 @@ export(chemhelper.update,
        group_correct,
        inchi.rem.stereo,
        inchi.rem.charges,
-       mass_decompose
+       mass_decompose,
+       merge_scan_events
        )
 
 

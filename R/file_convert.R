@@ -592,8 +592,7 @@ close(fileConn)
 
 
 
-merge_scan_events=function(infile,outfile){
-
+merge_scan_events=function(infile,outfile,oddrange,evenrange){
 
 
 xraw = xcmsRaw(infile,profstep = 0)
@@ -609,11 +608,15 @@ for (i in 1:length(xraw@scanindex)){
 }
 
 
+odd_scans = seq(from=1, to=nrow(scanrange)-1,by=2)
+even_scans = seq(from=2, to=nrow(scanrange),by=2)
+
+
 # Check if larger mass scan are always after lower mass scan
 scan_order_check = matrix(nrow = 0,ncol=2)
 colnames(scanrange)=c("mzmin","mzmax")
 
-for( i in seq(from=1, to=nrow(scanrange)-1,by=2)){
+for( i in odd_scans){
   temp =   scanrange[i,"mzmin"]<scanrange[i+1,"mzmin"]
   temp[2] =   scanrange[i,"mzmax"]<scanrange[i+1,"mzmax"]
   names(temp)=c("mzmin","mzmax")
@@ -626,10 +629,26 @@ if(!(all(scan_order_check)))
 
 
 
+# Enforce scan ranges
+if(!missing(oddrange)){
+  for( i in odd_scans){
+    select = scans[[i]][,"mz"]>oddrange[1]    &    scans[[i]][,"mz"]<oddrange[2]
+    scans[[i]]   =    scans[[i]][select,]
+  }
+}
+
+
+if(!missing(evenrange)){
+  for( i in even_scans){
+    select = scans[[i]][,"mz"]>evenrange[1]    &    scans[[i]][,"mz"]<evenrange[2]
+    scans[[i]]   =    scans[[i]][select,]
+  }
+}
+
+
 
 #Merge the scans
 scans_new=list()
-odd_scans = seq(from=1, to=nrow(scanrange)-1,by=2)
 for( i in 1:length(odd_scans)){
   scans_new[[i]]=rbind(  scans[[odd_scans[i]]],  scans[[odd_scans[i]+1]]             )
 }
@@ -676,7 +695,7 @@ profStep(ob) =   profStep(xraw)
 ob=remakeTIC(ob)
 
 
-dir.create(dirname(outfile),showWarnings=F)
+dir.create(dirname(outfile),showWarnings=F,recursive = T)
 write.mzdata(ob,outfile)
 
 
