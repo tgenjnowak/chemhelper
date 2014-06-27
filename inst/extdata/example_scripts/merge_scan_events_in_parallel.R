@@ -2,7 +2,7 @@ require(chemhelper)
 require(parallel)
 require(stringr)
 
-infiles = list.files(path="/media/jan/storage/FEM/Other_projects/pancreatic cancer/org_data",pattern=".mzXML",recursive = T,full.names = T)
+infiles = list.files(path="***********FULL INPUT PATH*************",pattern=".mzXML",recursive = T,full.names = T)
 outfiles = str_replace(infiles,"org_data","scans_merged")
 
 

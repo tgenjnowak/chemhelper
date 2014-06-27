@@ -21,10 +21,10 @@ indir_list=c("Standards_2013_Apr (synthesized peptides).pro/Data",
         "Standards_Sept-12/Data"
         )
 
-indir=paste("D:/files_also_in_other_places/FEM/RT mapping project/LIFE/standards/raw/",indir_list,"/",sep="")
+indir=paste("***********FULL INPUT PATH TO ABOVE FOLDERS*************",indir_list,"/",sep="")
 
 # Now we make a list of matching output floders
-outdir=paste("F:/FEM/RT mapping project/LIFE/standards/Converted/",indir_list,"/",sep="")
+outdir=paste("***********FULL OUTPUT PATH *************",indir_list,"/",sep="")
 outdir=str_replace(outdir,"/Data","")
 outdir=str_replace(outdir,"/data","")
 
