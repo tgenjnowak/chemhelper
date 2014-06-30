@@ -4,7 +4,7 @@ require(stringr)
 
 infiles = list.files(path="***********FULL INPUT PATH*************",pattern=".mzML",recursive = T,full.names = T)
 outfiles = str_replace(infiles,"org_data","scans_merged")
-outfiles = str_replace(infiles,".mzML",".mzData")
+outfiles = str_replace(outfiles,".mzML",".mzData")
 
 
 
