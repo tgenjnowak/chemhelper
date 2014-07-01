@@ -66,7 +66,7 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
     }
     
     
-    smiles=smiles[,'CanonicalSmiles']
+    smiles=smiles[,'CanonicalSmile']
     inchi              = smile2inchi(     smiles          )
     
     
@@ -127,7 +127,7 @@ pubchem2inchi <- function(cid,skip=NULL,silent=T){
       smiles           =   get.cid(i)      
     }
     
-    smiles=smiles[,'CanonicalSmiles']
+    smiles=smiles[,'CanonicalSmile']
     inchi              = smile2inchi(     smiles          )
       
         
