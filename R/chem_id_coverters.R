@@ -200,7 +200,7 @@ inchi.rem.stereo =function(inchi,verbose=F){
   system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nostereo',sep='')      ,intern=T,ignore.stderr = !verbose)
   })
   
-  output = unlist(output)
+  output = as.character(unlist(output))
   return(output)
 }
 
@@ -217,7 +217,7 @@ inchi.rem.charges =function(inchi,verbose=F){
     system(      paste('obabel -iinchi -:"',string,'" -oinchi -xT/nochg',sep='')      ,intern=T,ignore.stderr = !verbose)
   })
   
-  output = unlist(output)
+  output = as.character(unlist(output))
   return(output)
   
 }
