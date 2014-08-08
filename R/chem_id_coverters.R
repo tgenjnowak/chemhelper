@@ -11,6 +11,14 @@ smile2inchi =function(smile,verbose=F){
 }
 
 
+inchi2smile =function(inchi,verbose=F){  
+  # calls obabel binary in system. openbabel need to be installed
+  
+  string=paste(as.character(inchi),collapse='" -:"')
+  output=system(      paste('obabel -iinchi -:"',string,'" -osmi',sep='')      ,intern=T,ignore.stderr = !verbose)
+  
+  return(output)
+}
 
 
 

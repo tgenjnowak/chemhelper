@@ -1,6 +1,7 @@
 # Export all functions
 export(chemhelper.update,
        inchi2sdf,
+       inchi2smile,
        inchi.keep.cont,
        load.camera.rules,
        name2struc,
