@@ -18,7 +18,7 @@ formula2adduct = function(formula,add,sub){
 
 
 
-mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 
+mass_decompose = function(mass,intensities=NULL,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 
 {
   
   elements=initializeElements(elements)
@@ -103,15 +103,18 @@ mass_decompose = function(mass,ion="neutral",elements=c('C','H','N','O','P','S')
     
     
     # Do the decomposing
+    if(is.null(intensities)){
     formulas=decomposeMass(mass_offsetted,ppm=ppm,elements=elements,mzabs = 0, minElements=minElements, maxElements=maxElements)
-    
+    }else{
+    formulas=decomposeIsotopes(mass_offsetted,intensities,ppm=ppm,elements=elements,mzabs = 0, minElements=minElements, maxElements=maxElements)      
+    }
     
     # is nothing found then continue
     if (is.null(formulas)){next}
     
     
     # Make nice table of results
-    formulas=cbind(getFormula(formulas),getValid(formulas),formulas$DBE,signif(getMass(formulas)+offset,digits=7), signif((getMass(formulas)-(mass_offsetted))/(mass_offsetted)*1e6,digits=3), signif(getScore(formulas),digits=3))
+    formulas=cbind(getFormula(formulas),getValid(formulas),formulas$DBE,signif(getMass(formulas)+offset,digits=7), signif((getMass(formulas)-(mass_offsetted[1]))/(mass_offsetted[1])*1e6,digits=3), signif(getScore(formulas),digits=3))
     
     colnames(formulas)=c("Formula","Nitrogen rule","DBE","Calc. m/z","ppm","Rdisop score")
     
