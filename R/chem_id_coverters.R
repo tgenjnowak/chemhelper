@@ -40,7 +40,14 @@ inchi2sdf =function(inchi,verbose=F){
 
 
 
-name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nrow=length(input_names)))     ){
+name2struc =function(input_names, input_pubchem=as.numeric(matrix(data=NA,nrow=length(input_names)))     ){
+  
+  if(!(packageVersion("rpubchem")>="1.5.0.3")){
+  stop('At least version 1.5.0.3 of rpubchem is required for this function to work.
+       Latest bleading edge version can be install with:
+       install_github(repo="cdkr",username = "rajarshi",subdir = "rpubchem")
+       ')
+  }
   
   
   nas_logi = is.na(input_pubchem)
@@ -61,9 +68,9 @@ name2struc =function(input_names,    input_pubchem=as.numeric(matrix(data=NA,nro
     
     org_row            = i
     input_name         = as.character(input_names[i])
-    pubchem_CID        = as.character(        CTSgetR(input_name,from='Chemical Name',to='PubChem CID',limit.values=F)[,'PubChem.CID']          )
+    pubchem_CID        = as.character(        CTSgetR(input_name,from='Chemical Name',to='PubChem CID',limit.values=F)[,'PubChem CID']          )
     pubchem_CID        = as.numeric(unlist(str_split(pubchem_CID,',')))
-    output_name        = as.character(        CTSgetR(pubchem_CID,to='Chemical Name',from='PubChem CID',limit.values=F)[,'Chemical.Name']      )
+    output_name        = as.character(        CTSgetR(pubchem_CID,to='Chemical Name',from='PubChem CID',limit.values=F)[,'Chemical Name']      )
     
     smiles             = try(     get.cid(pubchem_CID)  , silent = TRUE)
     
