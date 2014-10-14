@@ -1,26 +1,26 @@
-\name{group_correct}
-\alias{group_correct}
+\name{clipboard}
+\alias{clipboard}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Batch-correct dataset feature-wise
+Copied to clipboard on linux
 }
 \description{
-Corrects dataset column-wise (feature-wise) such that groups of rows (samples) have the same mean. For each column the mean of each row group (class) is calculated and adjusted to the global row mean.
-This is intended to correct for batch effects in LC-MS based metabolomics studies.
+Copied to clipboard on linux. This works only on linux with xclip installed.
 }
 \usage{
-group_correct(dataset,f,zero.is.na=F)
+clipboard(x, sep="\t", row.names=FALSE, col.names=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dataset}{The matrix to correct.}
-  \item{f}{Vector defining the row (sample) grouping.}
-  \item{zero.is.na}{Treat zero values as missing data for the calculation of means.}
+\item{x}{The Object to be copied to the clipboard. Preferably a matrix or data frame. If not, it is attempted to coerce x to a data frame.}
+\item{sep}{Seperator tu use for copied content.}
+\item{row.names}{Copy row names.}
+\item{col.names}{Copy column names.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{Matrix or data.frame depending in the input object.}
+\value{None}
 \references{
 %% ~put references to the literature/web site here ~
 }

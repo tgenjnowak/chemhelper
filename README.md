@@ -12,13 +12,30 @@ R functions helpful in working with chemical data. A number of functions help an
 
 
 ### Installation
-First install the dependency [CTSgetR](https://github.com/dgrapov/CTSgetR).
-
-
-Then devtools.
+First install all dependencies as needed.
 ```R
 install.packages("devtools")
+install.packages("jsonlite")
+
 library(devtools)
+install_github(repo = "CTSgetR", username = "dgrapov")
+install_github(repo = "cdkr",username = "rajarshi",subdir = "rpubchem") # Version from CRAN is currently out of date.
+
+install.packages("xlsx")
+install.packages("stringr")
+install.packages("RCurl")
+install.packages("scales")
+
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+library(BiocInstaller)
+
+biocLite("ChemmineR")
+biocLite("xcms")
+biocLite("CAMERA")
+biocLite("Rdisop")
+
+install_github(repo = "MetShot", username = "sneumann")
 ```
 
 

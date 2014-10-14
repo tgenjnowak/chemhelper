@@ -1,26 +1,25 @@
-\name{group_correct}
-\alias{group_correct}
+\name{inchi.rem.stereo}
+\alias{inchi.rem.stereo}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Batch-correct dataset feature-wise
+Remove stereochemistry from a molecule InChI
 }
 \description{
-Corrects dataset column-wise (feature-wise) such that groups of rows (samples) have the same mean. For each column the mean of each row group (class) is calculated and adjusted to the global row mean.
-This is intended to correct for batch effects in LC-MS based metabolomics studies.
+Remove stereochemistry from a molecule InChI.
+Calls obabel locally. Hence obabel need to be available in path.
 }
 \usage{
-group_correct(dataset,f,zero.is.na=F)
+inchi.rem.stereo(inchi,verbose=F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dataset}{The matrix to correct.}
-  \item{f}{Vector defining the row (sample) grouping.}
-  \item{zero.is.na}{Treat zero values as missing data for the calculation of means.}
+  \item{inchi}{Character vector InChIs.}
+  \item{verbose}{Print additional information from obabel.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{Matrix or data.frame depending in the input object.}
+\value{A character vector of InChIs.}
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -28,7 +27,6 @@ group_correct(dataset,f,zero.is.na=F)
 Jan Stanstrup, \email{stanstrup@gmail.com}
 }
 \note{
-
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

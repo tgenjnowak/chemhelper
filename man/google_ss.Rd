@@ -1,27 +1,26 @@
-\name{group_correct}
-\alias{group_correct}
+\name{google_ss}
+\alias{google_ss}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Batch-correct dataset feature-wise
+Download data from google spreadsheet
 }
 \description{
-Corrects dataset column-wise (feature-wise) such that groups of rows (samples) have the same mean. For each column the mean of each row group (class) is calculated and adjusted to the global row mean.
-This is intended to correct for batch effects in LC-MS based metabolomics studies.
+Download data from google spreadsheet.
 }
 \usage{
-group_correct(dataset,f,zero.is.na=F)
+google_ss(gid = NA, key = NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dataset}{The matrix to correct.}
-  \item{f}{Vector defining the row (sample) grouping.}
-  \item{zero.is.na}{Treat zero values as missing data for the calculation of means.}
+\item{gid}{Gid of the spreadsheet. Need to be public}
+\item{key}{Key of the specific sheet/tab. Integer starting from 0.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{Matrix or data.frame depending in the input object.}
+\value{data.frame with spreadsheet data.}
 \references{
+http://www.r-bloggers.com/r-function-to-read-data-from-google-docs-spreadsheets/
 %% ~put references to the literature/web site here ~
 }
 \author{

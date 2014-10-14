@@ -1,26 +1,27 @@
-\name{group_correct}
-\alias{group_correct}
+\name{rem_satellite_peaks}
+\alias{rem_satellite_peaks}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Batch-correct dataset feature-wise
+Remove satellite/shoulder peaks (orbitrap artifacts)
 }
 \description{
-Corrects dataset column-wise (feature-wise) such that groups of rows (samples) have the same mean. For each column the mean of each row group (class) is calculated and adjusted to the global row mean.
-This is intended to correct for batch effects in LC-MS based metabolomics studies.
+Remove satellite/shoulder peaks (orbitrap artifacts).
+openMS need to be installed and SpectraFilterWindowMower available in path.
+The SpectraFilterWindowMower program is used with the parameters: -algorithm:windowsize 0.3 and -algorithm:peakcount 1.
 }
 \usage{
-group_correct(dataset,f,zero.is.na=F)
+rem_satellite_peaks(files,outdir)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dataset}{The matrix to correct.}
-  \item{f}{Vector defining the row (sample) grouping.}
-  \item{zero.is.na}{Treat zero values as missing data for the calculation of means.}
+  \item{files}{Paths to files to process.}
+  \item{outdir}{Output folder path. Files are written to mzML format by openMS.}
+  
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{Matrix or data.frame depending in the input object.}
+\value{None}
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -28,7 +29,6 @@ group_correct(dataset,f,zero.is.na=F)
 Jan Stanstrup, \email{stanstrup@gmail.com}
 }
 \note{
-
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

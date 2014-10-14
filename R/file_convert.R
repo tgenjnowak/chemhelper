@@ -657,7 +657,7 @@ for( i in 1:length(odd_scans)){
 #make sure mz are ordered
 for( i in 1:length(scans_new)){
   order = order(scans_new[[i]][,"mz"])
-  scans_new[[i]]=scans_new[[i]][order,]
+  scans_new[[i]]=scans_new[[i]][order,,drop=FALSE]
 }
 
 
