@@ -18,8 +18,8 @@ install.packages("devtools")
 install.packages("jsonlite")
 
 library(devtools)
-install_github(repo = "CTSgetR", username = "dgrapov")
-install_github(repo = "cdkr",username = "rajarshi",subdir = "rpubchem") # Version from CRAN is currently out of date.
+install_github("dgrapov/CTSgetR")
+install_github("rajarshi/cdkr",subdir = "rpubchem") # Version from CRAN is currently out of date.
 
 install.packages("xlsx")
 install.packages("stringr")
@@ -35,13 +35,13 @@ biocLite("xcms")
 biocLite("CAMERA")
 biocLite("Rdisop")
 
-install_github(repo = "MetShot", username = "sneumann")
+install_github("sneumann/MetShot")
 ```
 
 
 Then chemhelper.
 ```R
-install_github(repo = "chemhelper", username = "stanstrup")
+install_github("stanstrup/chemhelper")
 library(chemhelper)
 ```
 
