@@ -2,10 +2,10 @@
 \alias{mass_decompose}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Mass Decomposition
+Mass decomposition
 }
 \description{
-Calculate the elementary compositions from an exact Mass. This function is s wrapper for Rdisop's decomposeMass function. The output is a table with diagnostic information for each possible formula.
+Calculate the elementary compositions from an exact mass. This function is s wrapper for Rdisop's decomposeMass function. The output is a table with diagnostic information for each possible formula.
 }
 \usage{
 mass_decompose(mass,intensities=NULL,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 

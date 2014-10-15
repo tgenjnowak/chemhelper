@@ -2,13 +2,30 @@ chemhelper
 ==========
 
 R functions helpful in working with chemical data. A number of functions help analyze metabolomics data processed with xcms/CAMERA.
-* Converts files from Waters .raw format to mzData (convert.waters(indir,outdir)). MassLynx need to be installed and masswolf need to be in path.
-* Extended list of adducts/fragments for CAMERA (load.camera.rules)
-* Annotated mz/rt from dataset by database of known compounds' mz/rt (db.comp.assign(mz,rt,comp_name_db,mz_db,rt_db,mzabs=0.01,ppm=15,ret_tol=30))
-* For XCMS data: Why is my feature not listed? Try analyze.xcms.group too see if it picked in the files and if it was added to a group.
-* pubchem2inchi
-* inchi2sdf
-* smile2inchi
+
+#### Data conversion and fixes
+* `convert.waters`: Converts files from Waters .raw format to mzData. MassLynx need to be installed and masswolf need to be in path. (this works around the problem of properly converting Waters data described in the supplementary of dx.doi.org/10.1007/s00216-013-6954-6).
+* `merge_scan_events`: Merge even numbered scans with preceding odd numbered scan. This is used if for example the m/z range was split between different traces ("functions" in the lingo of some vendors).
+* `rem_satellite_peaks`: Remove satellite/shoulder peaks (orbitrap artifacts).
+
+#### XCMS/CAMERA helpers
+* `load.camera.rules`: Extended list of adducts/fragments for CAMERA.
+* `analyze.xcms.group`: For XCMS data. Why is my feature not listed? This function plots all peaks (in all samples) in a given rt / m/z area. The peak group boundaries are draw as rectangles. This can be used to debug peak groups that are erroneously split or merged.
+* `db.comp.assign`: Have a database of compounds' rt and m/z you want to match to your dataset? This function does exactly that.
+
+
+#### Convert compound identifiers
+* `name2struc`,`pubchem2inchi`,`inchi2sdf`,`smile2inchi`,`inchi2smile`
+* `inchi.keep.cont`: Keep only largest continues part of a molecule InChI (AKA remove salts).
+* `inchi.rem.charges`: Remove charges from a molecule InChI.
+* `inchi.rem.stereo`: Remove stereochemistry from a molecule InChI.
+
+
+#### Data massaging
+* `group_correct`: Batch-correct dataset feature-wise.
+
+#### Data analysis
+* `mass_decompose`: Mass decomposition. Calculate the elementary compositions from an exact mass. This function is s wrapper for Rdisop's decomposeMass function, but gives more output and filtering options. The output is a table with diagnostic information for each possible formula.
 
 
 ### Installation
