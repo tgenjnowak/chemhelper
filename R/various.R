@@ -16,7 +16,7 @@ getExt=function (path){
 
 chemhelper.update=function(){ 
   detach("package:chemhelper", unload=TRUE)
-  install_github(repo = "chemhelper", username = "stanstrup")
+  install_github("stanstrup/chemhelper")
   library(chemhelper)
 }
 
