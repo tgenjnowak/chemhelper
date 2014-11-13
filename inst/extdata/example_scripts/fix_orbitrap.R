@@ -1,11 +1,9 @@
 library(chemhelper)
 library(parallel)
 
-files=list.files("***********FULL INPUT PATH TO ABOVE FOLDERS*************",pattern='.mzXML',full.names=T,recursive=T)
-outdir = dirname(files)
-outdir = gsub('scans_merged','fixedfiles',outdir)
+files=list.files("***********FULL INPUT PATH THAT CONTAINS FILES*************",pattern='.mzXML',full.names=T,recursive=T)
+outdir = "***********FULL OUTPUT PATH*************"
 
-rst
 
 # make files and outdir into a lsit
 input=cbind(files,outdir)
