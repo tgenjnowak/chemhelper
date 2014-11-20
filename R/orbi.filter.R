@@ -45,7 +45,7 @@ orbifilter <- function(x,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,
     rem_candidate <- rem_candidate[   x[rem_candidate,"intensity"] / x[target,"intensity"] < max_rel_int  ] # only remove peaks that have lower relative intensity than max_rel_int
     
     
-    if(keep_isotopes){ # Keep masses if they could be isotopes. Also multicharged
+    if(  keep_isotopes & any(iso_dist<(windows_width/2))    ){ # Keep masses if they could be isotopes. Also multicharged. Don't do the calculations if the combination of max_charge and windows_width makes isotopes impossible
     target_dist      <- abs(x[rem_candidate,"mz"]-x[target,"mz"])
     dist_matrix      <- outer(target_dist, iso_dist, "-")
     dist_matrix      <- abs(dist_matrix)
