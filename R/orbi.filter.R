@@ -38,17 +38,23 @@ orbifilter <- function(x,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,
   done      <- rep(FALSE,  nrow(x)  )
   int_order <- order(x[,"intensity"], decreasing = TRUE)
   
+  
+  # To save time in the loop. Cuts about 20%
   find_isotopes <- keep_isotopes & any(iso_dist<(windows_width/2)) 
+  windows_width_half <- windows_width/2
+  mz <- x[,"mz"]
+  int <- x[,"intensity"]
+  
   
   while( !all(done | to_rem) ){
     target <- int_order[   !(int_order %in% which(done | to_rem))   ][1] # highest intensity mass that has not already been remove or assessed
     
-    rem_candidate <- which(is.between(x[,"mz"]     ,x[target,"mz"]-windows_width/2    ,x[target,"mz"]+windows_width/2    )) # the index of mz values within windows_width  
-    rem_candidate <- rem_candidate[   x[rem_candidate,"intensity"] / x[target,"intensity"] < max_rel_int  ] # only remove peaks that have lower relative intensity than max_rel_int
+    rem_candidate <- which(is.between(mz     ,mz[target]-windows_width_half    ,mz[target]+windows_width_half    )) # the index of mz values within windows_width  
+    rem_candidate <- rem_candidate[   int[rem_candidate] / int[target] < max_rel_int  ] # only remove peaks that have lower relative intensity than max_rel_int
     
     
     if(  find_isotopes   ){ # Keep masses if they could be isotopes. Also multicharged. Don't do the calculations if the combination of max_charge and windows_width makes isotopes impossible
-    target_dist      <- abs(x[rem_candidate,"mz"]-x[target,"mz"])
+    target_dist      <- abs(mz[rem_candidate]-mz[target])
     dist_matrix      <- outer(target_dist, iso_dist, "-")
     dist_matrix      <- abs(dist_matrix)
     dist_to_iso_hypo <- apply(dist_matrix,1,min)
