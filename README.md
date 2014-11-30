@@ -1,7 +1,7 @@
 chemhelper
 ==========
 
-R functions helpful in working with chemical data. A number of functions help analyze metabolomics data processed with xcms/CAMERA.
+R functions helpful in working with chemical data. A number of functions to help analyze metabolomics data processed with xcms/CAMERA.
 
 #### Data conversion and fixes
 * `convert.waters`: Converts files from Waters .raw format to mzData. MassLynx need to be installed and masswolf need to be in path. (this works around the problem of properly converting Waters data described in the supplementary of dx.doi.org/10.1007/s00216-013-6954-6).
