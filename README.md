@@ -37,7 +37,7 @@ install.packages("jsonlite")
 
 library(devtools)
 install_github("dgrapov/CTSgetR")
-install_github("rajarshi/cdkr",subdir = "rpubchem") # Version from CRAN is currently out of date.
+install_github("rajarshi/cdkr",subdir = "rpubchem") # Version from CRAN is currently outdated.
 
 install.packages("xlsx")
 install.packages("stringr")
