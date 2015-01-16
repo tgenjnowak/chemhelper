@@ -1,26 +1,27 @@
-\name{clipboard}
-\alias{clipboard}
+\name{rep.na}
+\alias{rep.na}
+\alias{rand.to.min}
+\alias{half.min}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Copy to clipboard on linux
+Replacement of NA values
 }
 \description{
-Copied to clipboard on linux. This works only on linux with xclip installed.
+Column-wise replacement of NA values based on non-NA data.
 }
 \usage{
-clipboard(x, sep="\t", row.names=FALSE, col.names=TRUE)
+rep.na(mat,zero.as.na=TRUE,rep.FUN=half.min)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{x}{The Object to be copied to the clipboard. Preferably a matrix or data frame. If not, it is attempted to coerce x to a data frame.}
-\item{sep}{Seperator tu use for copied content.}
-\item{row.names}{Copy row names.}
-\item{col.names}{Copy column names.}
+  \item{mat}{Matrix or data.frame where each column will be treated seperately.}
+  \item{zero.as.na}{If TRUE zero values are considered NA values.}
+  \item{rep.FUN}{Function to calculate replacement data. The function is invoked once per missing \code{\link{value.half.min}} will replace by half the minimum value. \code{\link{rand.to.min}} will replace by a random value between zero and the minimum non-NA value.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{None}
+\value{A matrix with NA values replaced.}
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -28,7 +29,6 @@ clipboard(x, sep="\t", row.names=FALSE, col.names=TRUE)
 Jan Stanstrup, \email{stanstrup@gmail.com}
 }
 \note{
-
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

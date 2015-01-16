@@ -18,7 +18,14 @@ export(chemhelper.update,
        inchi.rem.charges,
        mass_decompose,
        merge_scan_events,
-       xsAnnotate_stats
+       xsAnnotate_stats,
+       fold.change,
+       ratio.w.invert,
+       rep.na,
+       half.min,
+       rand.to.min,
+       orbifilter,
+       xcmsRaw.orbifilter
        )
 
 
