@@ -16,7 +16,7 @@ rep.na(mat,zero.as.na=TRUE,rep.FUN=half.min)
 \arguments{
   \item{mat}{Matrix or data.frame where each column will be treated seperately.}
   \item{zero.as.na}{If TRUE zero values are considered NA values.}
-  \item{rep.FUN}{Function to calculate replacement data. The function is invoked once per missing \code{\link{value.half.min}} will replace by half the minimum value. \code{\link{rand.to.min}} will replace by a random value between zero and the minimum non-NA value.}
+  \item{rep.FUN}{Function to calculate replacement data. The function is invoked once per missing value. \code{\link{half.min}} will replace by half the minimum value. \code{\link{rand.to.min}} will replace by a random value between zero and the minimum non-NA value.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

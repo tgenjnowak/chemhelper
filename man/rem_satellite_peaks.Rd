@@ -8,6 +8,8 @@ Remove satellite/shoulder peaks (orbitrap artifacts)
 Remove satellite/shoulder peaks (orbitrap artifacts).
 openMS need to be installed and SpectraFilterWindowMower available in path.
 The SpectraFilterWindowMower program is used with the parameters: -algorithm:windowsize 0.3 and -algorithm:peakcount 1.
+
+This function is now superseeded by \code{\link{xcmsRaw.orbifilter}} that works better and does not require openMS.
 }
 \usage{
 rem_satellite_peaks(files,outdir)

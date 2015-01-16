@@ -1,18 +1,3 @@
-# The xcmsRaw.orbifilter function takes an xcmsRaw object and tries to remove artifact peaks caused by 
-# fourier transformation and centroiding on orbitrap instruments.
-# 
-# In each scan the functions looks for the largest peak. It then looks in the range windows_width/2 
-# around this peak for peaks with a relative intensity below max_rel_int.
-# 
-# Optionally it can try to detect if a peak is really an isotope (could have multiple charges and thus 
-# have mass close to the real peak). This is enabled with keep_isotopes.
-# It then looks for the difference equivalent that would be associated with isotopes for molecules with a 
-# charge between 1 and max_charge. isotope_mz_tol adjusts the requirement for the accuracy of the mass difference 
-# to the isotope.
-#
-# The process is continues untill all peaks have either been marked for removal or all peaks have been assessed for neighboring artifacts 
-
-
 
 
 is.between <- function(x,a,b) {
@@ -77,7 +62,7 @@ orbifilter <- function(x,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,
 
 
 
-xcmsRaw.orbifilter=function(xraw,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,max_charge=5,isotope_mz_tol = 0.005){
+xcmsRaw.orbifilter <- function(xraw,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,max_charge=5,isotope_mz_tol = 0.005){
   
    
   # Get all scans seperately
