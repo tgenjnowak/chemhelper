@@ -8,7 +8,15 @@ Mass decomposition
 Calculate the elementary compositions from an exact mass. This function is s wrapper for Rdisop's decomposeMass function. The output is a table with diagnostic information for each possible formula.
 }
 \usage{
-mass_decompose(mass,intensities=NULL,ion="neutral",elements=c('C','H','N','O','P','S'),ppm=30, filter.DBE=TRUE,filter.nitrogen=TRUE,simplify=TRUE, minElements="C0", maxElements="C999999") 
+mass_decompose(mass,intensities=NULL,
+               ion="neutral",
+               elements=c('C','H','N','O','P','S'),
+               ppm=30,
+               filter.DBE=TRUE,
+               filter.nitrogen=TRUE,
+               simplify=TRUE,
+               minElements="C0",
+               maxElements="C999999") 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

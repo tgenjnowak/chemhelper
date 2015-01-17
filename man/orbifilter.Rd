@@ -16,8 +16,17 @@ The process is continues untill all peaks have either been marked for removal or
 
 }
 \usage{
-orbifilter(x,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,max_charge=5,isotope_mz_tol = 0.005)
-xcmsRaw.orbifilter(xraw,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,max_charge=5,isotope_mz_tol = 0.005)
+orbifilter(x,windows_width=0.1,
+             max_rel_int = 0.2,
+             keep_isotopes=TRUE,
+             max_charge=5,
+             isotope_mz_tol = 0.005)
+
+xcmsRaw.orbifilter(xraw,windows_width=0.1,
+                        max_rel_int = 0.2,
+                        keep_isotopes=TRUE,
+                        max_charge=5,
+                        isotope_mz_tol = 0.005)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

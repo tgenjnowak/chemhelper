@@ -19,7 +19,56 @@ ratio.w.invert <- function(x,y){
 
 
 
-fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+
+fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN="/",method=1){
+  
+if(method==1){    fold.change1(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==2){    fold.change2(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==3){    fold.change3(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+
+}
+
+
+
+
+
+
+
+
+
+
+fold.change1 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+  require(compiler)
+  
+  f_un <- unique(f)
+  temp <- matrix(NA,nrow = length(f_un),ncol=ncol(MAT))
+  rownames(temp) <- f_un
+  
+  for(i in 1:length(f_un)){
+    temp[i,] <- apply(MAT[f_un[i] == f,,drop=FALSE],2,aggr_FUN)
+  }
+  
+  
+  combs <- t(combn(as.character(f_un),2))
+  combi_FUN_vec <- Vectorize(combi_FUN)
+  
+  out <- matrix(NA,nrow = nrow(combs),ncol=ncol(temp))
+  rownames(out) <- pasteC(combs[,1],combs[,2])
+  colnames(out) <- 1:ncol(temp)
+  
+  for( i in 1:nrow(combs)){
+    out[i,] <- combi_FUN_vec(    temp[combs[i,1],]      ,         temp[combs[i,2],]   )
+  }
+  
+  
+  return(out)
+}
+
+
+
+
+
+fold.change2 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
   
   temp <- aggregate(. ~ class, data = cbind.data.frame(class=f,MAT), aggr_FUN)
   class_computed <- as.character(temp[,1])
@@ -36,4 +85,34 @@ fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
   })
   
   
+  return(out)
 }
+
+
+
+
+fold.change3 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+    
+  temp <- recast(data.frame(class=f,MAT),class ~ variable,id.var="class",aggr_FUN)
+  
+  
+  class_computed <- as.character(temp[,1])
+  temp <- as.matrix(temp[,-1])
+  combs <- t(combn(class_computed,2))
+  rownames(temp) <- class_computed
+  
+  combi_FUN_vec <- Vectorize(combi_FUN)
+  
+  out <- matrix(NA,nrow = nrow(combs),ncol=ncol(temp))
+  rownames(out) <- pasteC(combs[,1],combs[,2])
+  colnames(out) <- 1:ncol(temp)
+  
+  for( i in 1:nrow(combs)){
+    out[i,] <- combi_FUN_vec(    temp[combs[i,1],]      ,         temp[combs[i,2],]   )
+  }
+  
+  
+  return(out)
+}
+
+

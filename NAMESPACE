@@ -45,6 +45,7 @@ importFrom(scales,alpha)
 importFrom(RCurl,getURL)
 importFrom(Rdisop,"initializeElements","decomposeMass","decomposeIsotopes","getFormula","getValid","getMass","getScore","initializePSE","addMolecules","subMolecules","initializeCharges")
 importFrom(CAMERA,"getPeaklist")
+importFrom(reshape2,"recast")
 
 
 

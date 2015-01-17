@@ -8,7 +8,11 @@ Plot and analyze xcms peak groups in rt / m/z space
 Plots all peaks (in all samples) in a given rt / m/z area. The peak group boundaries are draw as rectangles. A large red spot markes the point of interest as defined in the input to the function. This can be used to debug peak groups that are erroneously split or merged. 
 }
 \usage{
-analyze.xcms.group(xset_grouped,mz,rt,rt_tol_sample=60,mz_tol_sample=0.01,rt_tol_group=30,mz_tol_group=0.05)
+analyze.xcms.group(xset_grouped,mz,rt,
+                   rt_tol_sample=60,
+                   mz_tol_sample=0.01,
+                   rt_tol_group=30,
+                   mz_tol_group=0.05)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -44,7 +48,11 @@ library(faahKO)
 filepath <- system.file("cdf", package = "faahKO")
 xsg <- group(faahko)
 xsg <- fillPeaks(xsg)
-analyze.xcms.group(xsg,mz=256.1500,rt=3451.305,rt_tol_sample=300,mz_tol_sample=0.01,rt_tol_group=300,mz_tol_group=0.05)
+analyze.xcms.group(xsg,mz=256.1500,rt=3451.305,
+                   rt_tol_sample=300,
+                   mz_tol_sample=0.01,
+                   rt_tol_group=300,
+                   mz_tol_group=0.05)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

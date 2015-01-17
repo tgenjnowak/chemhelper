@@ -8,7 +8,9 @@ Lookup compound name
 Lookup compound name and get matching structures using chemical translation service. A table is presented with all hits including PubChem CIDs and InChIs.
 }
 \usage{
-name2struc(input_names,    input_pubchem=as.numeric(matrix(data=NA,nrow=length(input_names)))     )
+name2struc(input_names,
+           input_pubchem=as.numeric(matrix(data=NA,nrow=length(input_names)))
+           )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
