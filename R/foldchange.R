@@ -22,10 +22,11 @@ ratio.w.invert <- function(x,y){
 
 fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN="/",method=1){
   
-if(method==1){    fold.change1(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
-if(method==2){    fold.change2(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
-if(method==3){    fold.change3(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==1){  out <-  fold.change1(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==2){  out <-  fold.change2(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==3){  out <-  fold.change3(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
 
+return(out)
 }
 
 
