@@ -39,8 +39,7 @@ return(out)
 
 
 fold.change1 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
-  require(compiler)
-  
+
   f_un <- unique(f)
   temp <- matrix(NA,nrow = length(f_un),ncol=ncol(MAT))
   rownames(temp) <- f_un
