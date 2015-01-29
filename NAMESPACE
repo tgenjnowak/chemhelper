@@ -26,7 +26,9 @@ export(chemhelper.update,
        rand.to.min,
        orbifilter,
        xcmsRaw.orbifilter,
-       heat.clust
+       heat.clust,
+       diff.mat2letter.not,
+       edges2diff.mat
        )
 
 
@@ -47,6 +49,8 @@ importFrom(RCurl,getURL)
 importFrom(Rdisop,"initializeElements","decomposeMass","decomposeIsotopes","getFormula","getValid","getMass","getScore","initializePSE","addMolecules","subMolecules","initializeCharges")
 importFrom(CAMERA,"getPeaklist")
 importFrom(reshape2,"recast")
+importFrom(igraph,"maximal.cliques","graph.data.frame","simplify")
+
 
 
 

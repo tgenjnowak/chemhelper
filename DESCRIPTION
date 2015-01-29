@@ -1,12 +1,12 @@
 Package: chemhelper
-Version: 0.3
-Date: 2015-01-17
+Version: 0.4
+Date: 2015-01-29
 Title: chemhelper
 Author: Jan Stanstrup <jan.stanstrup@fmach.it>
 Maintainer: Jan Stanstrup <jan.stanstrup@fmach.it>
 Depends: R (>= 2.14.0), Rcpp
 Suggests: faahKO
-Imports: devtools, MetShot, xlsx, ChemmineR, CTSgetR, stringr, rpubchem, xcms, Biobase, scales, RCurl, Rdisop, CAMERA, reshape2
+Imports: devtools, MetShot, xlsx, ChemmineR, CTSgetR, stringr, rpubchem, xcms, Biobase, scales, RCurl, Rdisop, CAMERA, reshape2, igraph
 Enhances: 
 Description: Functions for chemical data. Opelbabel need to be installed on system and be in path to convert inchi, smile, sdf etc. Masswolf and Masslynx need to be installed to convert waters .raw files
 License: GPL (>= 2)
