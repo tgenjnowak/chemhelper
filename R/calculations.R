@@ -144,3 +144,45 @@ mass_decompose = function(mass,intensities=NULL,ion="neutral",elements=c('C','H'
   return(formulas_list)
   
 }
+
+
+
+
+
+
+
+heat.clust <- function(x, scaledim = "column", zlim=c(-3,3), reorder=TRUE,
+                           scalefun = scale,
+                           distfun = function(x) as.dist(1-cor(t(x))),
+                           hclustfun = function(x) hclust(x, method="complete")
+                       ) {
+  
+  if (scaledim=="row")    z <- t(scalefun(t(x)))
+  if (scaledim=="column") z <-     scalefun(x)
+  
+  z <- pmin(pmax(z, zlim[1]), zlim[2])
+  
+  hcl_row <- as.dendrogram(hclustfun(distfun(z)))
+  hcl_col <- as.dendrogram(hclustfun(distfun(t(z))))
+  
+  
+  if (isTRUE(reorder)){
+    ro <- rowMeans(z, na.rm = T)
+    hcl_row <-  reorder(hcl_row,ro)
+    
+    co <- colMeans(z, na.rm = T)
+    hcl_col <-  reorder(hcl_col,co)
+  }
+  
+  
+  out <- list(
+    data=z, 
+    Rowv=hcl_row, 
+    Colv=hcl_col
+  )
+  
+  return(out)
+}
+
+
+

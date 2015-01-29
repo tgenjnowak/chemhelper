@@ -25,7 +25,8 @@ export(chemhelper.update,
        half.min,
        rand.to.min,
        orbifilter,
-       xcmsRaw.orbifilter
+       xcmsRaw.orbifilter,
+       heat.clust
        )
 
 
