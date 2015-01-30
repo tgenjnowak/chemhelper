@@ -28,7 +28,7 @@ heat.clust(x, scaledim = "column", zlim=c(-3,3), reorder=TRUE,
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{A list with the scaled data ($data),row ($Rowv) and column ($Colv) dendrograms.}
+\value{A list with the scaled data ($data), row ($Rowv) and column ($Colv) dendrograms.}
 \references{
 %% ~put references to the literature/web site here ~
 http://stackoverflow.com/questions/17924828/differences-in-heatmap-clustering-defaults-in-r-heatplot-versus-heatmap-2
