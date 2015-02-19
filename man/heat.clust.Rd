@@ -5,7 +5,7 @@
 Prepare dendrograms for gplots' heatmap.2.
 }
 \description{
-This function will prepare dendrograms for the heatmap.2. The type of scaling can be adjusted and is performed before dendrogram calculations (as opposed to native heatmap.2), reordering can be turned on/off and distance and clustering functions can be customized.
+This function will prepare dendrograms for the heatmap.2 function (gplots). The type of scaling can be adjusted and is performed before dendrogram calculations (as opposed to native heatmap.2), reordering can be turned on/off and distance and clustering functions can be customized.
 }
 \usage{
 heat.clust(x, scaledim = "column", zlim=c(-3,3), reorder=TRUE,
