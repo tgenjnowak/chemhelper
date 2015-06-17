@@ -700,3 +700,57 @@ write.mzdata(ob,outfile)
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+convert.waters2=function(infiles,outdir,funcs=c(1) ){
+  
+  
+  
+  for(i in 1:length(infiles)){
+   
+    # Figure out which function number each file belongs to
+    raw_files <- list.files(infiles[i])
+    m <- regexec("^_FUNC00(.*)(\\.)",raw_files)
+    m <- regmatches(raw_files, m)
+    raw_files <- cbind.data.frame(raw_files = raw_files, func_nr = as.numeric(sapply(m,function(x) x[2])),stringsAsFactors=FALSE)
+    
+    
+    # make temp .raw folder
+    temp_raw <-paste0(outdir,"/temp.raw") 
+    dir.create(temp_raw, showWarnings = FALSE,recursive=T)
+      
+    
+    # Do conversion for each function
+    for(funcs_sel in funcs){
+      
+      # copy the required files to a temp dir
+      to_copy <- raw_files$raw_files[raw_files$func_nr==funcs_sel | is.na(raw_files$func_nr)]
+      file.symlink(from = paste0(infiles[i],"/",to_copy), to = paste0(temp_raw,"/",to_copy))
+      
+      # Do the conversion
+      system(paste0('masswolf --mzXML ',"\"",temp_raw,"\"",' ',"\"",outdir,"/",basename(sub("\\.[^.]*$", "", infiles[i]) ),"_func",funcs_sel,".mzXML\""), intern=T)  
+      unlink(temp_raw,recursive = TRUE)
+ 
+    }
+    
+  }
+  
+}
