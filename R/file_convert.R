@@ -733,17 +733,17 @@ convert.waters2=function(infiles,outdir,funcs=c(1) ){
     raw_files <- cbind.data.frame(raw_files = raw_files, func_nr = as.numeric(sapply(m,function(x) x[2])),stringsAsFactors=FALSE)
     
     
-    # make temp .raw folder
-    temp_raw <-paste0(outdir,"/temp.raw") 
-    dir.create(temp_raw, showWarnings = FALSE,recursive=T)
-      
-    
     # Do conversion for each function
     for(funcs_sel in funcs){
       
+      # make temp .raw folder
+      temp_raw <-paste0(outdir,"/temp.raw") 
+      dir.create(temp_raw, showWarnings = FALSE,recursive=T)
+      
       # copy the required files to a temp dir
       to_copy <- raw_files$raw_files[raw_files$func_nr==funcs_sel | is.na(raw_files$func_nr)]
-      file.symlink(from = paste0(infiles[i],"/",to_copy), to = paste0(temp_raw,"/",to_copy))
+      to_copy_dest <- sub("00[0-9]","001",to_copy)
+      file.symlink(from = paste0(infiles[i],"/",to_copy), to = paste0(temp_raw,"/",to_copy_dest))
       
       # Do the conversion
       system(paste0('masswolf --mzXML ',"\"",temp_raw,"\"",' ',"\"",outdir,"/",basename(sub("\\.[^.]*$", "", infiles[i]) ),"_func",funcs_sel,".mzXML\""), intern=T)  
