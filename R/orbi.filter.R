@@ -16,7 +16,7 @@ is.between <- function(x,a,b) {
 
 orbifilter <- function(x,windows_width=0.1,max_rel_int = 0.2,keep_isotopes=TRUE,max_charge=5,isotope_mz_tol = 0.005){
 
-  neutron   <- 1.008664916
+  neutron   <- 1.0033548378 # really C12, C13 difference
   iso_dist  <- neutron / seq(from=1,by=1,to=max_charge)
   
   to_rem    <- rep(FALSE,  nrow(x)  )
