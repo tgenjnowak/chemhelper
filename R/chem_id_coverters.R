@@ -14,11 +14,20 @@ smile2inchi =function(smile,verbose=F){
 
 inchi2smile =function(inchi,verbose=F){  
   # calls obabel binary in system. openbabel need to be installed
+  # Cannot handle an infinite number of inchis in one chunk. So we split it.
   
-  string=paste(as.character(inchi),collapse='" -:"')
-  output=system(      paste('obabel -iinchi -:"',string,'" -osmi',sep='')      ,intern=T,ignore.stderr = !verbose)
   
+  inchi = split(inchi, ceiling(seq_along(inchi)/200))
+  
+  output = sapply(inchi,function(x) {
+    string <- paste(as.character(x),collapse='" -:"')
+    system(      paste('obabel -iinchi -:"',string,'" -osmi',sep='')      ,intern=T,ignore.stderr = !verbose)
+  })
+  
+  output = as.character(unlist(output))
+    
   return(output)
+  
 }
 
 
@@ -27,7 +36,7 @@ inchi2smile =function(inchi,verbose=F){
 inchi2sdf =function(inchi,verbose=F){
   #require(ChemmineR)
   # calls obabel binary in system. openbabel need to be installed
-  # Cannot handle an infinite number of inchiùs in one chunk. So we split it.
+  # Cannot handle an infinite number of inchis in one chunk. So we split it.
     
   
   inchi = split(inchi, ceiling(seq_along(inchi)/200))
