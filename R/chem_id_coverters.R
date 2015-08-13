@@ -21,7 +21,8 @@ inchi2smile =function(inchi,verbose=F){
   
   output = sapply(inchi,function(x) {
     string <- paste(as.character(x),collapse='" -:"')
-    system(      paste('obabel -iinchi -:"',string,'" -osmi',sep='')      ,intern=T,ignore.stderr = !verbose)
+    temp <- system(      paste('obabel -iinchi -:"',string,'" -osmi',sep='')      ,intern=T,ignore.stderr = !verbose)
+    gsub("[[:space:]]", "", temp)
   })
   
   output = as.character(unlist(output))
