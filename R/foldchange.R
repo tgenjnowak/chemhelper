@@ -132,7 +132,6 @@ fold.change4 <- function(MAT,f,aggr_FUN=mean,combi_FUN=function(x,y) "/"(x,y)   
     by_slice(map, aggr_FUN)
   
   
-  
   class_computed <- as.character(as.matrix(temp[,1]))
   temp <- as.matrix(temp[,-1])
   combs <- t(combn(class_computed,2))
