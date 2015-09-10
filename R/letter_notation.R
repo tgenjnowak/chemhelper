@@ -16,9 +16,10 @@ diff.mat2letter.not <- function(g){
   
   # Reorder by level order - Solution from "MrFlick" ()
   ml<-max(sapply(cliq, length))
+  cliq2 <- lapply(cliq, as.numeric) 
   reord <- do.call(order, data.frame(
     do.call(rbind, 
-            lapply(cliq, function(x) c(sort(x), rep.int(0, ml-length(x))))
+            lapply(cliq2, function(x) c(sort(x), rep.int(0, ml-length(x))))
     )
   ))
   cliq <- cliq[reord]
