@@ -20,11 +20,12 @@ ratio.w.invert <- function(x,y){
 
 
 
-fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN="/",method=1){
+fold.change <- function(MAT,f,aggr_FUN=mean,combi_FUN = function(x,y) "/"(x,y)    ,method=1){
   
 if(method==1){  out <-  fold.change1(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
 if(method==2){  out <-  fold.change2(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
 if(method==3){  out <-  fold.change3(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
+if(method==4){  out <-  fold.change3(MAT=MAT,f=f,aggr_FUN=aggr_FUN,combi_FUN=combi_FUN)       }
 
 return(out)
 }
@@ -38,7 +39,7 @@ return(out)
 
 
 
-fold.change1 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+fold.change1 <- function(MAT,f,aggr_FUN=mean,combi_FUN=function(x,y) "/"(x,y)   ){
 
   f_un <- unique(f)
   temp <- matrix(NA,nrow = length(f_un),ncol=ncol(MAT))
@@ -68,7 +69,7 @@ fold.change1 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
 
 
 
-fold.change2 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+fold.change2 <- function(MAT,f,aggr_FUN=mean,combi_FUN=function(x,y) "/"(x,y)    ){
   
   temp <- aggregate(. ~ class, data = cbind.data.frame(class=f,MAT), aggr_FUN)
   class_computed <- as.character(temp[,1])
@@ -91,7 +92,7 @@ fold.change2 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
 
 
 
-fold.change3 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
+fold.change3 <- function(MAT,f,aggr_FUN=mean,combi_FUN=function(x,y) "/"(x,y)     ){
     
   temp <- recast(data.frame(class=f,MAT),class ~ variable,id.var="class",aggr_FUN)
   
@@ -111,6 +112,41 @@ fold.change3 <- function(MAT,f,aggr_FUN=mean,combi_FUN="/"){
     out[i,] <- combi_FUN_vec(    temp[combs[i,1],]      ,         temp[combs[i,2],]   )
   }
   
+  
+  return(out)
+}
+
+
+
+
+
+
+
+
+
+fold.change4 <- function(MAT,f,aggr_FUN=mean,combi_FUN=function(x,y) "/"(x,y)     ){
+
+  # mean by purrr package
+    temp <- data.frame(class = f, MAT) %>%
+    slice_rows("class") %>%
+    by_slice(map, aggr_FUN)
+  
+  
+  
+  class_computed <- as.character(as.matrix(temp[,1]))
+  temp <- as.matrix(temp[,-1])
+  combs <- t(combn(class_computed,2))
+  rownames(temp) <- class_computed
+  
+  combi_FUN_vec <- Vectorize(combi_FUN)
+  
+  out <- matrix(NA,nrow = nrow(combs),ncol=ncol(temp))
+  rownames(out) <- pasteC(combs[,1],combs[,2])
+  colnames(out) <- 1:ncol(temp)
+  
+  for( i in 1:nrow(combs)){
+    out[i,] <- combi_FUN_vec(    temp[combs[i,1],]      ,         temp[combs[i,2],]   )
+  }
   
   return(out)
 }

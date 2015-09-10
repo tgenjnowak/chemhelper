@@ -9,14 +9,14 @@ Fold change
 Calculates fold change for all columns/variables in a matrix based on grouping vector.
 }
 \usage{
-fold.change(MAT,f,aggr_FUN=mean,combi_FUN="/",method=1)
+fold.change(MAT,f,aggr_FUN=mean,combi_FUN = function(x,y) "/"(x,y),method=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{MAT}{Matrix or data.frame where each column is considered a variable and each row are the samples.}
   \item{f}{Sample grouping vector. Fold change will be calculated between all group conbinations.}
   \item{aggr_FUN}{function to aggregate replicates. Usually \code{\link{mean}} or \code{\link{median}}.}
-  \item{combi_FUN}{Function to calculate the change between aggregated group values. "/" is default (just the ratio). If \code{\link{ratio.w.invert}} is specified the fold change will be positive if the the first group in the comparision notation is higher and negative if the second group in the comparision notation is higher.}
+  \item{combi_FUN}{Function to calculate the change between aggregated group values. function(x,y) "/"(x,y) is default (just the ratio). If \code{\link{ratio.w.invert}} is specified the fold change will be positive if the the first group in the comparision notation is higher and negative if the second group in the comparision notation is higher.}
   \item{method}{Methods 1 (default), 2 and 3 available. Result are identicals. Different methods are just here to show efficiency of different approaches.}
 }
 \details{

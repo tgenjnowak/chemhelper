@@ -51,8 +51,6 @@ importFrom(Rdisop,"initializeElements","decomposeMass","decomposeIsotopes","getF
 importFrom(CAMERA,"getPeaklist")
 importFrom(reshape2,"recast")
 importFrom(igraph,"maximal.cliques","graph.data.frame","simplify")
-
-
-
-
+importFrom(purrr,"slice_rows","by_slice","map")
+importFrom(dplyr,"%>%")
 
