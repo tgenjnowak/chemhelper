@@ -17,13 +17,9 @@ convert.waters(indir,outdir)
   \item{indir}{Folder with waters .raw files.}
   \item{outdir}{Folder where the mzData files should be written.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{None}
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Jan Stanstrup, \email{stanstrup@gmail.com}
 }
@@ -33,9 +29,7 @@ This should probably be changed to accept files instead of folders. But then it 
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+
 \examples{
 \dontrun{
 ## Convert all files in a single folder
@@ -79,7 +73,3 @@ parLapplyLB(cl,arg_list,function(x) convert.waters(x[1],x[2]))
 stopCluster(cl)
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

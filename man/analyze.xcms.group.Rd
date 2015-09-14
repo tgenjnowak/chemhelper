@@ -24,23 +24,11 @@ analyze.xcms.group(xset_grouped,mz,rt,
   \item{rt_tol_group}{Retention time (seconds) tolerances for finding related peaks groups.}
   \item{mz_tol_group}{m/z tolerances for finding related peaks groups.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{A matrix giving the peak groups in the selected rt / m/z area.}
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Jan Stanstrup, \email{stanstrup@gmail.com}
-}
-\note{
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 library(xcms)
@@ -54,7 +42,3 @@ analyze.xcms.group(xsg,mz=256.1500,rt=3451.305,
                    rt_tol_group=300,
                    mz_tol_group=0.05)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -14,24 +14,9 @@ load.camera.rules(mode)
 \arguments{
   \item{mode}{The ionization mode. Can be "pos", "neg" or "ei".}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{matrix defining adduct rules.}
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Jan Stanstrup, \email{stanstrup@gmail.com}
-}
-\note{
-
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 \dontrun{
@@ -42,7 +27,3 @@ system.file("extdata","CAMERA_rules_ei.xlsx", package="chemhelper")
 }
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

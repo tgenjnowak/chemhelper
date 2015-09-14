@@ -30,28 +30,8 @@ mass_decompose(mass,intensities=NULL,
   \item{simplify}{Output is always a list if multiple values of "ion" is supplied. If TRUE output is a data.frame if a single ion is supplied.}
   \item{minElements, maxElements}{Molecular formulas, which contain lower and upper boundaries of allowed formula respectively.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{A list containing a data.frame with the following columns: Formula, Nitrogen rule, DBE, Calc. m/z, ppm, Rdisop score. A single data.frame if simplify=TRUE.}
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Jan Stanstrup, \email{stanstrup@gmail.com}
 }
-\note{
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
