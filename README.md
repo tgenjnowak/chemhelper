@@ -46,7 +46,6 @@ source("http://bioconductor.org/biocLite.R")
 biocLite()
 library(BiocInstaller)
 
-biocLite("ChemmineR")
 biocLite("xcms")
 biocLite("CAMERA")
 biocLite("Rdisop")
