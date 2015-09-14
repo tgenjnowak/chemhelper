@@ -2,9 +2,15 @@ chemhelper
 ==========
 
 R functions helpful in working with chemical data. A number of functions to help analyze metabolomics data processed with xcms/CAMERA.
+*Many functions have been moved to the packages: [convert.waters.raw](https://github.com/stanstrup/convert.waters.raw), [obabel2R](https://github.com/stanstrup/obabel2R), and [massageR](https://github.com/stanstrup/massageR). *
+
+
+
+
+
+
 
 #### Data conversion and fixes
-* `convert.waters`: Converts files from Waters .raw format to mzData. MassLynx need to be installed and masswolf need to be in path. (this works around the problem of properly converting Waters data described in the supplementary of dx.doi.org/10.1007/s00216-013-6954-6).
 * `merge_scan_events`: Merge even numbered scans with preceding odd numbered scan. This is used if for example the m/z range was split between different traces ("functions" in the lingo of some vendors).
 * `rem_satellite_peaks`: Remove satellite/shoulder peaks (orbitrap artifacts).
 * `orbifilter`, `xcmsRaw.orbifilter`: Remove satellite/shoulder peaks (orbitrap artifacts). Newer and better than the approach in `rem_satellite_peaks`.

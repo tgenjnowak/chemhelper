@@ -3,9 +3,6 @@ export(chemhelper.update,
        load.camera.rules,
        name2struc,
        pubchem2inchi,
-       rem_satellite_peaks,
-       convert.waters,
-       convert.waters2,
        clipboard,
        db.comp.assign,
        analyze.xcms.group,
@@ -21,17 +18,14 @@ export(chemhelper.update,
 # Import all packages listed as Imports or Depends
 import(Rcpp)
 importFrom(devtools,"install_github")
-importFrom(MetShot,"msn2xcms")
 importFrom(CTSgetR,"CTSgetR")
 importFrom(rpubchem,"get.cid")
-importFrom(Biobase,"copyEnv")
 importFrom(xlsx,"read.xlsx","read.xlsx2","write.xlsx2")
-importFrom(stringr,"str_split","str_trim","str_replace")
-importFrom(xcms,"xcmsRaw","write.mzdata","getScan","profStep","plotChrom","plotTIC","profStep<-")
 importFrom(scales,"alpha")
 importFrom(RCurl,"getURL")
 importFrom(Rdisop,"initializeElements","decomposeMass","decomposeIsotopes","getFormula","getValid","getMass","getScore","initializePSE","addMolecules","subMolecules","initializeCharges")
 importFrom(CAMERA,"getPeaklist")
 importFrom(obabel2R,"smile2inchi")
-
+importFrom(xcms,"xcmsRaw","getScan","profStep<-","profStep","write.mzdata")
+importFrom(stringr,"str_split")
 
