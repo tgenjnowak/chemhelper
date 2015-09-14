@@ -2,7 +2,8 @@ chemhelper
 ==========
 
 R functions helpful in working with chemical data. A number of functions to help analyze metabolomics data processed with xcms/CAMERA.
-*Many functions have been moved to the packages:* [*convert.waters.raw*](https://github.com/stanstrup/convert.waters.raw), [*obabel2R*](https://github.com/stanstrup/obabel2R), and [*massageR*](https://github.com/stanstrup/massageR).
+
+***Many functions have been moved to the packages:*** [***convert.waters.raw***](https://github.com/stanstrup/convert.waters.raw), [***obabel2R***](https://github.com/stanstrup/obabel2R), and [***massageR***](https://github.com/stanstrup/massageR).
 
 
 
