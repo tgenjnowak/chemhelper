@@ -6,7 +6,7 @@ Author: Jan Stanstrup <jan.stanstrup@fmach.it>
 Maintainer: Jan Stanstrup <jan.stanstrup@fmach.it>
 Depends: R (>= 2.14.0), Rcpp
 Suggests: faahKO
-Imports: devtools, xlsx, CTSgetR, rpubchem, scales, RCurl, Rdisop, CAMERA, obabel2R, xcms, stringr
+Imports: devtools, xlsx, CTSgetR, rpubchem, scales, RCurl, Rdisop, CAMERA, obabel2R, xcms, stringr, dplyr, magrittr, tidyr
 Enhances: 
 Description: Functions for chemical data.
 License: GPL (>= 2)

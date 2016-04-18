@@ -11,7 +11,8 @@ export(chemhelper.update,
        merge_scan_events,
        xsAnnotate_stats,
        orbifilter,
-       xcmsRaw.orbifilter
+       xcmsRaw.orbifilter,
+       mzmine2xcmsSet
        )
 
 
@@ -27,5 +28,7 @@ importFrom(Rdisop,"initializeElements","decomposeMass","decomposeIsotopes","getF
 importFrom(CAMERA,"getPeaklist")
 importFrom(obabel2R,"smile2inchi")
 importFrom(xcms,"xcmsRaw","getScan","profStep<-","profStep","write.mzdata")
-importFrom(stringr,"str_split")
-
+importFrom(stringr,"str_split","str_replace_all")
+importFrom(dplyr,"%>%","mutate","select","arrange","n","mutate_each","funs","group_by","summarise","rename")
+importFrom(magrittr,"%<>%")
+importFrom(tidyr,"gather","separate","spread")
