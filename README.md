@@ -18,6 +18,7 @@ R functions helpful in working with chemical data. A number of functions to help
 
 
 #### XCMS/CAMERA helpers
+* `mzmine2xcmsSet`: Converts a peaktable from MzMine to an xcmsSet object. This allows you to use full-featured CAMERA on MzMine data.
 * `load.camera.rules`: Extended list of adducts/fragments for CAMERA.
 * `analyze.xcms.group`: For XCMS data. Why is my feature not listed? This function plots all peaks (in all samples) in a given rt / m/z area. The peak group boundaries are draw as rectangles. This can be used to debug peak groups that are erroneously split or merged.
 * `db.comp.assign`: Have a database of compounds' rt and m/z you want to match to your dataset? This function does exactly that.
