@@ -209,8 +209,9 @@ mzmine2xcmsSet <- function(peaklist_mzmine, filepath = NULL, get.scantimes = FAL
   
   # completely made up fields
   mzmine_xset@profinfo  <- list(method="bin",step=0.005)
-  mzmine_xset@mslevel   <- numeric(0)
   mzmine_xset@scanrange <- numeric(0)
+  
+  if(.hasSlot(test, "mslevel")){ mzmine_xset@mslevel   <- numeric(0) } # some versions seem not to create this slot
   
   
   # Convert table to long format
