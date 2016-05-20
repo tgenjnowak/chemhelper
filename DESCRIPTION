@@ -12,3 +12,4 @@ Description: Functions for chemical data.
 License: GPL (>= 2)
 URL: None
 biocViews: MassSpectrometry, Metabolomics
+Remotes: stanstrup/obabel2R, stanstrup/CTSgetR
