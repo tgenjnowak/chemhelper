@@ -194,6 +194,7 @@ mzmine2xcmsSet <- function(peaklist_mzmine, filepath = NULL, get.scantimes = FAL
   intb <-
   maxo <-
   sn <-
+  rt <-
   NULL 
   
   
@@ -215,7 +216,7 @@ mzmine2xcmsSet <- function(peaklist_mzmine, filepath = NULL, get.scantimes = FAL
   
   
   # Convert table to long format
-  peaklist_mzmine_long <- peaklist_mzmine %>% gather(type,value,-`row ID`,-`row m/z`,-`row retention time`,-`All identity elements`,-`ID`,-`Molecular formula`,-`Name`,-`Identification method`) %>% 
+  peaklist_mzmine_long <- peaklist_mzmine %>% gather(type,value,-matches("row ID|row m/z|row retention time|All identity elements|ID|Molecular formula|Name|Identification method")) %>% 
                           separate(type,c("sample_name","type"),sep = " ",extra = "merge") %>% 
                           mutate(type = str_replace_all(type, "filtered ", ""))
   
@@ -284,11 +285,13 @@ mzmine2xcmsSet <- function(peaklist_mzmine, filepath = NULL, get.scantimes = FAL
   
   
   # Create the final list of peaks
+  as.numeric_quietly <- function(x){temp_fun <- quietly(as.numeric); temp_fun(x)$result }
+  
   peaklist_mzmine_peaks %<>% 
                               select(-sample_name,-`row ID`,-`Peak status`) %>%
                               rename(mz = `Peak m/z`) %>%
                               rename(rt = `Peak RT`, rtmax = `Peak RT end`, rtmin = `Peak RT start`) %>% 
-                              mutate_each(funs(as.numeric)) %>%
+                              mutate_each(funs(as.numeric_quietly)) %>%
                               mutate(mzmin = mz-0.005,mzmax = mz+0.005) %>%
                               mutate(rt = rt*60, rtmax = rtmax*60, rtmin = rtmin*60) %>% 
                               mutate(into = `Peak area`, intb = `Peak area`, maxo = `Peak height`) %>% 
